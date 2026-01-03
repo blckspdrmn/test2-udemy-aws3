@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiTestController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('playlists.index');
 });
+
+// APIテストページ
+Route::get('/api/test', [ApiTestController::class, 'index'])->name('api.test');
 
 Route::resource('playlists', PlaylistController::class);
 Route::post('playlists/{playlist}/videos', [VideoController::class, 'store'])->name('videos.store');
